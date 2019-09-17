@@ -1,0 +1,25 @@
+<div class="row">
+<h1>Actions</h1>
+
+{{#if action}}
+
+<table>
+    <tr>
+        <th>Type</th>
+        <th>Price</th>
+        <th>When</th>
+    </tr>
+    {{#each action}}
+    <tr>
+        <td>{{type}}</td>
+        <td>{{cost}}</td>
+        <td>{{timestamp}}</td>
+    </tr>
+    {{/each}}
+</table>
+{{else}}
+<p>No data found</p>
+{{/if}}
+
+</div>
+
