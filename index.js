@@ -3,6 +3,8 @@ let app = express();
 const exphbs = require("express-handlebars");
 const body = require("body-parser");
 const SettingsBill = require("./settings-bill");
+var moment = require("moment");
+moment().format();
 
 const bill = SettingsBill();
 
@@ -47,15 +49,22 @@ app.post("/action", function(req, res) {
 });
 
 app.get("/actions", function(req, res) {
-  res.render("action", { action: bill.actions() });
+  const allActions = bill.actions();
+for (const iterator of allActions) {
+  iterator.ago = moment(iterator.timestamp).fromNow()
+}
+  
+
+  res.render("action", { action: allActions})
 });
 
 app.get("/actions/:actionPlan", function(req, res) {
   const actionPlan = req.params.actionPlan;
+
   res.render("action", { action: bill.actionsFor(actionPlan) });
 });
 
-let PORT = process.env.PORT || 3007;
+let PORT = process.env.PORT || 5001;
 
 app.listen(PORT, function() {
   console.log("App starting on port", PORT);
