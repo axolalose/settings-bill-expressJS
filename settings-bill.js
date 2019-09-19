@@ -9,8 +9,8 @@ module.exports = function SettingsBill() {
   function setSettings(settings) {
     smsCost = Number(settings.smsCost);
     callCost = Number(settings.callCost);
-    warningLevel = settings.warningLevel;
-    criticalLevel = settings.criticalLevel;
+    warningLevel = Number(settings.warningLevel);
+    criticalLevel = Number(settings.criticalLevel);
   }
 
   function getSettings() {
@@ -75,9 +75,9 @@ module.exports = function SettingsBill() {
     let smsTotal = getTotal("sms");
     let callTotal = getTotal("call");
     return {
-      smsTotal,
-      callTotal,
-      grandTotal: grandTotal()
+      smsTotal: smsTotal.toFixed(2),
+      callTotal: callTotal.toFixed(2),
+      grandTotal: grandTotal().toFixed(2)
     };
   }
 
