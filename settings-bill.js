@@ -24,18 +24,22 @@ module.exports = function SettingsBill() {
 
   function recordAction(action) {
     if (!stopColor()) {
+      
+
+      
       let cost = 0;
       if (action === "sms") {
         cost = smsCost;
       } else if (action === "call") {
         cost = callCost;
       }
-
+      if(action !==  undefined){
       actionList.push({
         type: action,
         cost,
         timestamp: new Date()
       });
+    }
     }
   }
 
