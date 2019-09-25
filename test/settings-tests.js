@@ -92,4 +92,27 @@ describe('Actions for Settings-Bill', function(){
     assert.equal(11.40, settingsBill.totals().grandTotal);
 
 });
+describe('all totals of sms and call', function(){
+    it('should calculate the right totals', function(){
+        const settingsBill = SettingsBill();
+        settingsBill.setSettings({
+            smsCost: 2.35,
+            callCost: 3.35,
+            warningLevel: 30,
+            criticalLevel: 40
+        });
+    
+        settingsBill.recordAction('call');
+        settingsBill.recordAction('sms');
+    
+        assert.equal(2.35, settingsBill.totals().smsTotal);
+        assert.equal(3.35, settingsBill.totals().callTotal);
+        assert.equal(5.70, settingsBill.totals().grandTotal);
+    
+    });
+    it('should return calculations for grand total', function(){
+        
+    })
+});
+
 
